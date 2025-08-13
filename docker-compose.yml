@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mem0:
+    build: .
+    container_name: mem0
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    env_file:
+      - .env
+    volumes:
+      - /home/maymarketing/data/mem0:/app/data
+      - /home/maymarketing/logs/mem0:/app/logs
+    networks:
+      - nas-network
+
+networks:
+  nas-network:
+    external: true
